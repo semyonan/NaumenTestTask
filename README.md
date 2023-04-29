@@ -1,4 +1,4 @@
-# NaumenTestTast
+# NaumenTestTask
 ## 1. Java Application Start
 Run Appliction.java passing as parameters the name of the file, which will contain the source data.
 ## 2. Web Application Start

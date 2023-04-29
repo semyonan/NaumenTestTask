@@ -1,4 +1,4 @@
-package org.semyonan;
+package org.semyonan.dto;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

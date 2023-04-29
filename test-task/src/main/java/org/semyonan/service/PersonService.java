@@ -1,6 +1,7 @@
-package org.semyonan;
+package org.semyonan.service;
 
 import org.modelmapper.ModelMapper;
+import org.semyonan.dto.PersonDto;
 import org.semyonan.entities.Person;
 import org.semyonan.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;

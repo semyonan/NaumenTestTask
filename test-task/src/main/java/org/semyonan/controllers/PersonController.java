@@ -1,8 +1,7 @@
 package org.semyonan.controllers;
 
-import org.semyonan.PersonDto;
-import org.semyonan.PersonService;
-import org.semyonan.entities.Person;
+import org.semyonan.dto.PersonDto;
+import org.semyonan.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

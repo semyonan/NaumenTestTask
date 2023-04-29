@@ -1,16 +1,14 @@
 package org.semyonan;
 
 import org.semyonan.parser.FileParser;
+import org.semyonan.service.PersonService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.util.Pair;
 
-import java.io.File;
 import java.util.Arrays;
-import java.util.stream.Stream;
 
 @SpringBootApplication
 @EntityScan("org.semyonan.entities")

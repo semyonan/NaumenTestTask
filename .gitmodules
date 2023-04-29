@@ -1,0 +1,3 @@
+[submodule "NaumenTestTaskWeb"]
+	path = NaumenTestTaskWeb
+	url = https://github.com/semyonan/NaumenTestTaskWeb.git

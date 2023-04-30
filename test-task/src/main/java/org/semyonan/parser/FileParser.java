@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FileParser {
-    public List<Pair<String, Integer>> parse(String fileName) throws FileNotFoundException {
+    public static List<Pair<String, Integer>> parse(String fileName) throws FileNotFoundException {
         var result = new ArrayList<Pair<String, Integer>>();
         File file = new File(fileName);
         Scanner scanner = new Scanner(file);

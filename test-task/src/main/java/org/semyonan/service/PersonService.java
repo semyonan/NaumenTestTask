@@ -6,6 +6,8 @@ import org.semyonan.entities.Person;
 import org.semyonan.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,8 +15,13 @@ import java.util.stream.Collectors;
 @Service
 public class PersonService {
 
+    static final int MAX_AGE = 100;
+
     private final PersonRepository personRepository;
     private final ModelMapper modelMapper;
+
+    @Autowired
+    private RemoteDataService remoteDataService;
 
     @Autowired
     public PersonService(PersonRepository personRepository, ModelMapper modelMapper) {
@@ -22,6 +29,7 @@ public class PersonService {
         this.modelMapper = modelMapper;
     }
 
+    // Add new record
     public void save(String name, int age) {
         var personDto = new PersonDto();
         personDto.setName(name);
@@ -31,28 +39,36 @@ public class PersonService {
         personRepository.save(modelMapper.map(personDto, Person.class));
     }
 
-    public PersonDto getMaxAge() {
+    public PersonDto getMaxAged() {
         return modelMapper.map(personRepository.findMaxAged(), PersonDto.class);
     }
 
     public List<PersonDto> getAll() {
         List<Person> persons = personRepository.findAll();
         return persons.stream().map((person) -> modelMapper.map(person, PersonDto.class))
-                .collect(Collectors.toList());
+                .toList();//collect(Collectors.toList());
     }
 
-    public Integer getByName(String name) {
+    public Integer getAgeByName(String name) {
         var result = personRepository.findAllAgeByName(name);
 
         if (result == null) {
-            int age = 0;
-            for(int i = 0; i < name.length(); i++){
-                age+=name.charAt(i);
-            }
-            return age % 100;
+            result = remoteDataService.getAgeByName(name);
+        }
+
+        if (result == null) {
+            result = calculateAgeByName(name);
         }
 
         return result;
+    }
+
+    private int calculateAgeByName(String name) {
+        int age = 0;
+        for(int i = 0; i < name.length(); i++){
+            age+=name.charAt(i);
+        }
+        return age % MAX_AGE;
     }
 
     public void update(String name) {

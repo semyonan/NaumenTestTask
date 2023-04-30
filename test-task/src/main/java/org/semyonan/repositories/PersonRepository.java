@@ -15,7 +15,7 @@ import java.util.Iterator;
 public interface PersonRepository extends JpaRepository<Person, Long> {
     @Query("SELECT r.age FROM Person r WHERE r.name = :name")
     public Integer findAllAgeByName(@Param("name") String name);
-    @Query("SELECT p FROM Person as p ORDER BY p.age DESC LIMIT 1")
+    @Query("SELECT p FROM Person as p ORDER BY p.age DESC, p.id LIMIT 1")
     public Person findMaxAged();
     public Integer getIdByName(String name);
     Person findByName(String name);

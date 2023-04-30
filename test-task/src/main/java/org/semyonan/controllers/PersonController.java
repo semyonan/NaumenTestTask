@@ -5,6 +5,8 @@ import org.semyonan.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/")
 public class PersonController {
@@ -15,19 +17,19 @@ public class PersonController {
     }
 
     @GetMapping("/getage")
-    public Integer getName(@RequestParam String name) {
+    public Integer getAgeByName(@RequestParam String name) {
         personService.update(name);
-        return personService.getByName(name);
+        return personService.getAgeByName(name);
     }
 
     @GetMapping("/getmaxaged")
     @ResponseBody
     public PersonDto getMaxAged(){
-        return personService.getMaxAge();
+        return personService.getMaxAged();
     }
 
-    @GetMapping("/persons")
-    public Iterable<PersonDto> greeting() {
+    @GetMapping(value={"/", "/persons"})
+    public Iterable<PersonDto> getPersons() {
         return personService.getAll();
     }
 }
